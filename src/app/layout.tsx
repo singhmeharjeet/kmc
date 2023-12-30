@@ -1,6 +1,8 @@
+import Providers from "@/components/Providers";
 import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,7 +22,47 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`font-sans ${inter.variable}`}>
+        <header className="flex items-center justify-between bg-white p-4 shadow-md">
+          <div className="flex items-center space-x-4">
+            <UtensilsIcon className="h-8 w-8" />
+            <h1 className="text-2xl font-bold">Kitchen Mall Corp</h1>
+          </div>
+        </header>
+        <Providers>{children}</Providers>
+        <footer className="mt-8 flex flex-col items-center justify-center bg-white p-4 shadow-md">
+          <div className="space-x-4">
+            <Link className="text-sm font-medium hover:underline" href="#">
+              Help
+            </Link>
+            <Link className="text-sm font-medium hover:underline" href="#">
+              Contact
+            </Link>
+          </div>
+          <p className="mt-2 text-xs text-gray-500">© Kitchen Mall Corp</p>
+        </footer>
+      </body>
     </html>
+  );
+}
+
+function UtensilsIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+      <path d="M7 2v20" />
+      <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+    </svg>
   );
 }
